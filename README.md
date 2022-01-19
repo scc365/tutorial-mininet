@@ -295,7 +295,7 @@ Then you can just change the value used in the <code>--topo</code> flag to <code
 
 ## Stage 6: Adding Realism
 
-So now you can run virtual networks on your devices that can vary in complexity. However, real networks typically have well-defined constraints and limitations, a trait not present in the topologies you have created thus far. For example, a hardware networking device such as a simple switch for a small home network might have 8 ports, each of which being limited to 1Gb. However, Mininet does provide a mechanism that allows traffic control features to be applied to links: `tclink`. In this, where you would typically define a link in a topology, you would add synthetic constraints. Below are some examples of setting these constraints within a Mininet topology file:
+So now you can run virtual networks on your devices that can vary in complexity. However, real networks typically have well-defined constraints and limitations, a trait not present in the topologies you have created thus far. For example, a hardware networking device such as a simple switch for a small home network might have 8 ports, each of which being limited to 1Gb. However, Mininet does provide a mechanism that allows **t**raffic **c**ontrol features to be applied to **link**s: `tclink`. In this, where you would typically define a link in a topology, you would add synthetic constraints. Below are some examples of setting these constraints within a Mininet topology file:
 
 <details>
 <summary>Import the TCLink class 🐍</summary>
