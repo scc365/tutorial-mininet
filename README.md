@@ -103,7 +103,7 @@ The topology provided is very minimal, containing only a single connected host a
 
 ### Task 1: More Hosts
 
-Using the provided topology as a base, add 4 more hosts to the switch (`s1`). To check if you have completed the task, you should run the `net` and/or `links` commands and match the result with the answer below.
+Modify the provided `topology.py` file to add 4 more hosts to the switch (`s1`). To check if you have completed the task, you should run the `net` and/or `links` commands and match the result with the answer below.
 
 Remember, you can run commands as hosts if you want to run a particular test. E.g. if you want to check the full information of a `ping` between `h1` and `h4`, you can do so like: `h1 ping h4` from the `mn` prompt.
 
@@ -232,6 +232,8 @@ rtt min/avg/max/mdev = 0.106/0.229/0.600/0.191 ms
 
 This tells you firstly, that as packet loss is `0%`, these points (`h1` and `h8`) can communicate. Secondly, the average round trip time between the 2 points is `0.229ms`. And finally, another interesting point to note from the data, the first ping between the hosts was `0.6ms`, but the subsequent pings were around `0.1-0.2ms`. This gives us an indication that some connection setup logic was happening when the ping took place, but that logic established a faster connection for future communication.
 
+> 🧰 See the `ping` guide [here](https://github.com/scc365/guide-network-testing/blob/main/ping/PING.md)!
+
 ### Testing Bandwidth
 
 So like the `ping` command gives a measure of latency via its round trip time output, `iperf` (or `iperf3`) can give a measure of bandwidth between 2 points. Unlike `ping`  that just the sending client runs, `iperf` requires one node run an `iperf` server (e.g. `iperf3 -s`), and another a client that specifies the server to communicate with (e.g. `iperf3 -c h8 -p 5201`). 
@@ -269,6 +271,8 @@ iperf Done.
 <br>
 
 This output tells us that the link between `h1` and `h8` has a maximum capacity of `69Gbps` (_nice_).
+
+> 🧰 See the `iperf` guide [here](https://github.com/scc365/guide-network-testing/blob/main/iperf/IPERF.md)!
 
 ## Stage 5: Multiple Topologies
 
