@@ -1,0 +1,5 @@
+sudo docker build --rm -t topology:latest --build-arg topology=tutorialTopology -f Dockerfile .
+sudo docker run --rm -it --privileged --network host --name topology topology:latest -v info
+
+sudo docker build --rm -t topology:latest .
+sudo docker run --rm -it --privileged --network host --name topology topology:latest
