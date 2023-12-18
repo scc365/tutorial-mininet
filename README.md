@@ -400,7 +400,7 @@ For more on remote controllers with Mininet, see the [`Ryu Tutorial`](https://gi
 
 ## Solution
 
-Solutions for the tasks in this tutorial will be available [here](https://github.com/scc365/tutorial-solution-mininet) on GitHub (in week 12). However, this tutorial is not assessed and is designed to help you get familiar with Mininet, so make sure you make your own attempt at the tasks before looking at these solutions.
+Solutions for the tasks in this tutorial is available [here](https://github.com/scc365/tutorial-solution-mininet) on GitHub. However, this tutorial is not assessed and is designed to help you get familiar with Mininet, so make sure you make your own attempt at the tasks before looking at these solutions.
 
 <!-- TODO: Upload Solution -->
 
