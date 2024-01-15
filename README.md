@@ -67,14 +67,12 @@ sudo mn --custom ./topology.py --topo tutorialTopology --switch ovsk
 
 <details>
 <summary>Do this with Docker 🐳</summary>
-<br>
-Build the container image (each time you make a change to the topology code):
 <pre>
-docker build --rm -t topology:latest .
-</pre><br>
-Run the container:
-<pre>
-docker run --rm -it --privileged --network host --name topology topology:latest
+docker run --rm -it --privileged --network host \
+  --name topology --label scc365=topology \
+  -v "$(pwd)"/topology.py:/workspace/topology.py:ro \
+  ghcr.io/scc365/mininet:latest \
+  mn --custom topology.py --topo tutorialTopology
 </pre><br>
 </details>
 <br>
@@ -359,10 +357,11 @@ sudo controller ptcp:6633
 
 <details>
 <summary>Do this with Docker 🐳</summary>
-<br>
-Just run the provided container image for the <code>ptcp</code> controller:
 <pre>
-docker run --rm -it --network host --name ptcp ghcr.io/scc365/ptcp:latest
+docker run --rm -it --privileged --network host \
+  --name ptcp --label scc365=ptcp \
+  ghcr.io/scc365/mininet:latest \
+  controller ptcp:6633
 </pre><br>
 </details>
 <br>
@@ -373,24 +372,6 @@ Next, modify your `mn` command to bring up the topology created as part of this 
 sudo mn --custom ./topology.py --topo tutorialTopology \
 --switch ovsk --controller remote,ip=127.0.0.1,port=6633
 ```
-
-<details>
-<summary>Do this with Docker 🐳</summary>
-<br>
-Add the controller remote flag to the Dockerfile's command:
-<pre>
-CMD [ "--custom /topology/topology.py --topo tutorialTopology --switch ovsk --controller remote,ip=127.0.0.1,port=6633" ]
-</pre><br>
-Build the container image (each time you make a change to the topology code):
-<pre>
-docker build --rm -t topology:latest .
-</pre><br>
-Run the container:
-<pre>
-docker run --rm -it --privileged --network host --name topology topology:latest
-</pre><br>
-</details>
-<br>
 
 Now your topology should act the same as it did prior to using a remote controller. But try running the topology with your updated `mn` command, but with no `ptcp` controller running.
 
