@@ -6,16 +6,43 @@ This tutorial looks at running emulated network topologies on your device using 
 
 ## Getting Started
 
-To complete this tutorial you should clone this repository onto the provided [virtual machine](https://github.com/scc365/virtual-machine):
+To complete this tutorial you should clone this repository onto you h-drive:
 
 ```
 git clone https://github.com/scc365/tutorial-mininet
 cd ./tutorial-mininet
+code .
 ```
 
 Alternatively you can use this as a _Template Repository_ if you wish to have a copy in your own GitHub profile.
 
 > 🔗 You may find these [links](#links) useful throughout this tutorial
+
+## The environment
+
+In order to test you code, we use this year the VS.code *devcontainer*
+capabilitity. Devcontainers exploit an OS mechanism called a container to run
+isolated instances of the software that you will use for your lab activities and
+coursework. A container is a lightweight, standalone, and executable package
+hat includes everything needed to run a piece of software, including the code,
+runtime, libraries, and dependencies. They look like Virtual Machines, but they
+are much more lightweight.
+
+Devcontainers are used in development environments to ensure consistency across
+different development setups by providing a standardized environment. This helps
+developers avoid issues related to differences in local development environments
+and ensures that the application behaves the same way regardless of where it is
+run.
+
+![](https://code.visualstudio.com/assets/docs/devcontainers/containers/architecture-containers.png)
+
+By default, the project code you downloaded contains a config file (*.devcontainer.json*) that allows
+your VS.code instance to setup the required packages to run your devcontainer.
+You can run the sample code on your computer, by downloading the 
+Docker Desktop installer from the [official Docker
+website](https://www.docker.com/products/docker-desktop). For more detailed
+instructions, refer to the [Docker Desktop
+documentation](https://docs.docker.com/desktop/).
 
 ## Stages
 
@@ -62,10 +89,10 @@ So the basics, there are 4 fundamental components to a Mininet topology: Hosts, 
 The quickest way to get topologies running is via the `mn` command-line tool. You can run the provided minimal topology like so:
 
 ```bash
-sudo mn --custom ./topology.py --topo tutorialTopology --switch ovsk
+mn --custom ./topology.py --topo tutorialTopology --switch ovsk
 ```
 
-<details>
+<!-- <details>
 <summary>Do this with Docker 🐳</summary>
 <pre>
 docker run --rm -it --privileged --network host \
@@ -75,7 +102,7 @@ docker run --rm -it --privileged --network host \
   mn --custom topology.py --topo tutorialTopology
 </pre><br>
 </details>
-<br>
+<br> -->
 
 > 🙋 The flag `--switch ovsk` just specifies the type of bridge to use by default in the topology. For scc365 course materials you should use this flag, however, feel free to investigate others.
 
@@ -261,18 +288,18 @@ Connecting to host 10.0.0.8, port 5201
 - - - - - - - - - - - - - - - - - - - - - - - - -
 [ ID] Interval           Transfer     Bandwidth       Retr
 [  4]   0.00-10.00  sec  80.5 GBytes  69.2 Gbits/sec  2282             sender
-[  4]   0.00-10.00  sec  80.5 GBytes  69.2 Gbits/sec                  receiver
-
-iperf Done.
-</pre><br>
-</details>
-<br>
-
-This output tells us that the link between `h1` and `h8` has a maximum capacity of `69Gbps` (_nice_).
-
-> 🧰 See the `iperf` guide [here](https://github.com/scc365/guide-network-testing/blob/main/iperf/IPERF.md)!
-
 ## Stage 5: Multiple Topologies
+
+Sometimes you might need quick access to multiple topologies. Luckily, you can very easily define multiple topologies in `mn` topology files. 
+
+At the bottom of your topology file, you should have noticed the `topos` variable being set to a dictionary that is populated with the name of your topology matched with the class that your topology is built within. If you have another class in the same file that extends `Topo`, you can just add to the `topos` dictionary:
+
+<details>
+<summary>Adding to the <code>topos</code> dictionary 📖</summary>
+If you have a class that extends <code>Topo</code> called <code>MyNewExampleTopology</code>, you can add that to the <code>topos</code> dictionary:
+<pre>
+topos = { 
+          'tutorialTopology': ( lambda: TutorialTopology() ),
 
 Sometimes you might need quick access to multiple topologies. Luckily, you can very easily define multiple topologies in `mn` topology files. 
 
