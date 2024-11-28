@@ -44,6 +44,19 @@ website](https://www.docker.com/products/docker-desktop). For more detailed
 instructions, refer to the [Docker Desktop
 documentation](https://docs.docker.com/desktop/).
 
+> 📝 The lab machines at Lancaster University give you access to "Docker" commands using Podman.
+> With this you can Docker commands, though containers created using it won't have full root
+> privileges.
+
+To run a devcontainer with VS Code you can select "Reopen in container" from the VS Code 
+command pallete and it will create the envrionment and connect your current Code session
+to it. Or you can use the devcontainer CLI from a terminal window opened in the same dir
+as the `.devcontainer.json` file:
+
+```bash
+devcontainer open
+```
+
 ## Stages
 
 This tutorial consists of seven stages, each of which building on the prior: 
