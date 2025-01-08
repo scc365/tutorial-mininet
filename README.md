@@ -102,7 +102,7 @@ So the basics, there are 4 fundamental components to a Mininet topology: Hosts, 
 The quickest way to get topologies running is via the `mn` command-line tool. You can run the provided minimal topology like so:
 
 ```bash
-mn --custom ./topology.py --topo tutorialTopology --switch ovsk
+mn --custom ./topology.py --topo tutorialTopology --switch ovs
 ```
 
 <!-- <details>
@@ -117,7 +117,7 @@ docker run --rm -it --privileged --network host \
 </details>
 <br> -->
 
-> 🙋 The flag `--switch ovsk` just specifies the type of bridge to use by default in the topology. For scc365 course materials you should use this flag, however, feel free to investigate others.
+> 🙋 The flag `--switch ovs` just specifies the type of bridge to use by default in the topology. For scc365 course materials you should use this flag, however, feel free to investigate others.
 
 You can see how you can use the other features provided by `mn` using its help function: `mn -h` (or see the man page [here](./MN.md)).
 
@@ -378,13 +378,13 @@ Once you have done this, using the basic testing tools highlighted [in stage 4](
 
 ## Stage 7: Welcome SDN
 
-Using the `--switch ovsk` flag in the `mn` command tells Mininet to use Open vSwitch software bridges as the default switches in the topologies. These are OpenFlow enabled, an SDN protocol that improves network configurability. These devices do have default functionality as the topologies you have been running thus far have been working, however, further functionality can be added to these software bridges via an external OpenFlow controller. In Mininet, this is simply defined as using a _remote controller_.
+Using the `--switch ovs` flag in the `mn` command tells Mininet to use Open vSwitch software bridges as the default switches in the topologies. These are OpenFlow enabled, an SDN protocol that improves network configurability. These devices do have default functionality as the topologies you have been running thus far have been working, however, further functionality can be added to these software bridges via an external OpenFlow controller. In Mininet, this is simply defined as using a _remote controller_.
 
 A remote controller is specified in the `mn` CLI via the flag "`--controller remote`" and can also specify the IP address and Port number that the OpenFlow controller is listening via. For example, if an OpenFlow controller was running on a device with the IP address `10.50.50.33` and Port `6633`, this could be specified in the `mn` CLI like so:
 
 ```bash
 sudo mn --custom ./topology.py --topo tutorialTopology \
---switch ovsk --controller remote,ip=10.50.50.33,port=6633
+--switch ovs --controller remote,ip=10.50.50.33,port=6633
 ```
 
 > 💡 **Note:** the `\` in the command above simply tells bash to allow the command to move onto the line below
@@ -410,13 +410,13 @@ Next, modify your `mn` command to bring up the topology created as part of this 
 
 ```bash
 sudo mn --custom ./topology.py --topo tutorialTopology \
---switch ovsk --controller remote,ip=127.0.0.1,port=6633
+--switch ovs --controller remote,ip=127.0.0.1,port=6633
 ```
 
 Now your topology should act the same as it did prior to using a remote controller. But try running the topology with your updated `mn` command, but with no `ptcp` controller running.
 
 <!-- TODO: Add Link to P4 Tutorial -->
-For more on remote controllers with Mininet, see the [`Ryu Tutorial`](https://github.com/scc365/tutorial-ryu)
+For more on remote controllers with Mininet, see the [`OSKen Tutorial`](https://github.com/scc365/tutorial-ken)
 
 
 ## Solution
