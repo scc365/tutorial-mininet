@@ -325,17 +325,6 @@ If you have a class that extends <code>Topo</code> called <code>MyNewExampleTopo
 <pre>
 topos = { 
           'tutorialTopology': ( lambda: TutorialTopology() ),
-
-Sometimes you might need quick access to multiple topologies. Luckily, you can very easily define multiple topologies in `mn` topology files. 
-
-At the bottom of your topology file, you should have noticed the `topos` variable being set to a dictionary that is populated with the name of your topology matched with the class that your topology is built within. If you have another class in the same file that extends `Topo`, you can just add to the `topos` dictionary:
-
-<details>
-<summary>Adding to the <code>topos</code> dictionary 📖</summary>
-If you have a class that extends <code>Topo</code> called <code>MyNewExampleTopology</code>, you can add that to the <code>topos</code> dictionary:
-<pre>
-topos = { 
-          'tutorialTopology': ( lambda: TutorialTopology() ),
           'newTopology': ( lambda: MyNewExampleTopology() ) 
         }
 </pre>
