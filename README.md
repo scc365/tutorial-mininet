@@ -137,7 +137,7 @@ When you have the topology running and the `mn` prompt (`mininet> `) available, 
 
 The topology provided is very minimal, containing only a single connected host and switch. Most topologies are far larger, so the given topology is of little use. In this stage you should attempt the 2 tasks presented to extend the topology with more nodes and switches.
 
-> 💡 **Tip:** after each run of `mn`, run the command `sudo mn -c` to perform a cleanup to prevent some unexpected behavior. If using Docker, this is done automatically by the provided base image.
+> 💡 **Tip:** after each run of `mn`, run the command `mn -c` to perform a cleanup to prevent some unexpected behavior. If using Docker, this is done automatically by the provided base image.
 
 ### Task 1: More Hosts
 
@@ -301,6 +301,18 @@ Connecting to host 10.0.0.8, port 5201
 - - - - - - - - - - - - - - - - - - - - - - - - -
 [ ID] Interval           Transfer     Bandwidth       Retr
 [  4]   0.00-10.00  sec  80.5 GBytes  69.2 Gbits/sec  2282             sender
+
+iperf Done.
+</pre><br>
+</details>
+<br>
+
+This output tells us that the link between `h1` and `h8` has a maximum capacity of `69Gbps` (_nice_).
+Sometimes you might need quick access to multiple topologies. Luckily, you can very easily define multiple topologies in `mn` topology files. 
+
+> 🧰 See the `iperf` guide [here](https://github.com/scc365/guide-network-testing/blob/main/iperf/IPERF.md)!
+
+
 ## Stage 5: Multiple Topologies
 
 Sometimes you might need quick access to multiple topologies. Luckily, you can very easily define multiple topologies in `mn` topology files. 
@@ -383,7 +395,7 @@ Using the `--switch ovs` flag in the `mn` command tells Mininet to use Open vSwi
 A remote controller is specified in the `mn` CLI via the flag "`--controller remote`" and can also specify the IP address and Port number that the OpenFlow controller is listening via. For example, if an OpenFlow controller was running on a device with the IP address `10.50.50.33` and Port `6633`, this could be specified in the `mn` CLI like so:
 
 ```bash
-sudo mn --custom ./topology.py --topo tutorialTopology \
+mn --custom ./topology.py --topo tutorialTopology \
 --switch ovs --controller remote,ip=10.50.50.33,port=6633
 ```
 
@@ -392,7 +404,7 @@ sudo mn --custom ./topology.py --topo tutorialTopology \
 To test this, you will first need to have access to a remote controller. Luckily there is a controller that you can use that provides functionality similar to that provided by default. To bring up this controller at `localhost:6633`, you simply need to run the following command:
 
 ```bash
-sudo controller ptcp:6633
+controller ptcp:6633
 ```
 
 <details>
@@ -409,7 +421,7 @@ docker run --rm -it --privileged --network host \
 Next, modify your `mn` command to bring up the topology created as part of this tutorial's [tasks](#tasks) to use a remote controller found locally (`127.0.0.1`) at port `6633`. This should look the same or similar to:
 
 ```bash
-sudo mn --custom ./topology.py --topo tutorialTopology \
+mn --custom ./topology.py --topo tutorialTopology \
 --switch ovs --controller remote,ip=127.0.0.1,port=6633
 ```
 
